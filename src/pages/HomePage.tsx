@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
-import ThreeBackground from '../components/ThreeBackground';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Skills from '../components/sections/Skills';
@@ -18,8 +17,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <ThreeBackground />
+    <div className="relative min-h-screen overflow-hidden gradient-background">
       <Header />
       
       <motion.main 
