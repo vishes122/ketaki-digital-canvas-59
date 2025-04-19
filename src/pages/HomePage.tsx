@@ -18,15 +18,16 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen">
-      <div className="fixed inset-0 gradient-background -z-10" />
+      <div className="fixed inset-0 gradient-background" />
       <Header />
       
       <motion.main 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-32 relative z-10"
+        transition={{ duration: 0.3 }}
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24 relative"
       >
-        <section id="home" className="min-h-[calc(100vh-5rem)] flex items-center">
+        <section id="home" className="min-h-[calc(100vh-4rem)] flex items-center">
           <Hero />
         </section>
         
@@ -34,7 +35,7 @@ const HomePage = () => {
           <section
             key={section}
             id={section}
-            className="pt-16 scroll-mt-24"
+            className="scroll-mt-16 py-16"
           >
             {(() => {
               switch (section) {

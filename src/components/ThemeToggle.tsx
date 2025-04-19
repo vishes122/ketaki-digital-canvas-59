@@ -19,32 +19,19 @@ export function ThemeToggle() {
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
       className="fixed top-4 right-4 z-50"
     >
       <Button
-        variant="outline"
-        size="icon"
+        variant="ghost"
+        size="sm"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="rounded-full glass-card w-12 h-12"
-        aria-label="Toggle theme"
+        className="rounded-full bg-background/50 backdrop-blur-sm hover:bg-background/80 w-8 h-8"
       >
         {theme === "dark" ? (
-          <motion.div
-            initial={{ rotate: -30, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Sun className="h-5 w-5 text-yellow-400" />
-          </motion.div>
+          <Sun className="h-4 w-4 text-yellow-400" />
         ) : (
-          <motion.div
-            initial={{ rotate: 30, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Moon className="h-5 w-5 text-purple-700" />
-          </motion.div>
+          <Moon className="h-4 w-4 text-purple-700" />
         )}
         <span className="sr-only">Toggle theme</span>
       </Button>

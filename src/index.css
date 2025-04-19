@@ -60,82 +60,16 @@
 }
 
 .gradient-background {
-  @apply bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-100 via-violet-50 to-white dark:from-gray-900 dark:via-purple-900/30 dark:to-black;
+  @apply bg-gradient-to-br from-violet-50 via-white to-violet-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950;
 }
 
 .glass-card {
-  @apply backdrop-blur-md bg-white/40 dark:bg-black/40 border border-white/30 dark:border-white/10 shadow-lg hover:shadow-xl transition-shadow duration-300;
-}
-
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400;
-}
-
-.animated-gradient-border {
-  --border-width: 2px;
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.animated-gradient-border::before {
-  content: "";
-  position: absolute;
-  top: -150%;
-  left: -50%;
-  width: 200%;
-  height: 400%;
-  background: conic-gradient(
-    from var(--angle),
-    transparent 0%,
-    hsl(var(--primary)) 10%,
-    transparent 20%
-  );
-  animation: rotate 4s linear infinite;
-  z-index: -1;
-}
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes rotate {
-  to {
-    --angle: 360deg;
-  }
-}
-
-/* For the 3D background */
-/* Professional gradient backgrounds */
-.gradient-background {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  position: relative;
-}
-
-.dark .gradient-background {
-  background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
-}
-
-.gradient-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.dark .gradient-background::before {
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  @apply bg-background/95 backdrop-blur-sm border shadow-sm hover:shadow-md transition-shadow duration-200;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -143,40 +77,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-purple-500/50 dark:bg-purple-700/50 rounded-full;
+  @apply bg-violet-200 dark:bg-violet-800 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-purple-600/70 dark:bg-purple-600/70;
+  @apply bg-violet-300 dark:bg-violet-700;
 }
 
-/* Glass morphism utilities */
-.glass-morphism {
-  @apply backdrop-blur-xl bg-white/5 dark:bg-black/5 border border-white/10 dark:border-white/5 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
-}
-
-.neo-blur {
-  @apply backdrop-blur-2xl bg-white/30 dark:bg-black/30 border border-white/10;
-}
-
-/* Animation utilities */
-.hover-scale {
-  @apply transition-transform duration-200 hover:scale-105;
-}
-
-.hover-glow {
-  @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)];
-}
-
-.pulse {
-  @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
-}
-
-/* Additional gradient utilities */
-.gradient-text-primary {
-  @apply bg-gradient-to-br from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent;
-}
-
-.gradient-border {
-  @apply border-transparent bg-gradient-to-r from-violet-500 to-indigo-500 dark:from-violet-400 dark:to-indigo-400 bg-clip-border;
+/* Performance optimizations */
+* {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
