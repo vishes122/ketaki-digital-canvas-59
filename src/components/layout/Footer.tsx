@@ -1,4 +1,3 @@
-
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -10,7 +9,7 @@ export function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="w-full py-12 px-6 glass-card mt-20 relative animated-gradient-border"
+      className="w-full py-12 px-6 glass-card mt-20 relative"
     >
       <div className="container mx-auto">
         <motion.div 
@@ -52,7 +51,7 @@ export function Footer() {
                 <span className="sr-only">GitHub</span>
               </motion.a>
               <motion.a 
-                href="https://www.linkedin.com/in/ketaki-khanvilkar-b36874297" 
+                href="https://www.linkedin.com/in/ketaki-khanvilkar-b36874297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"

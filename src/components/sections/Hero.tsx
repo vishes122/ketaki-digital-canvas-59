@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Mail, Phone, Linkedin, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -84,7 +83,7 @@ const Hero = () => {
           <span>ketakikhanvilkar@gmail.com</span>
         </motion.a>
         <motion.a 
-          href="https://linkedin.com/in/ketaki-khanvilkar-b36874297" 
+          href="https://www.linkedin.com/in/ketaki-khanvilkar-b36874297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
           target="_blank" 
           rel="noopener noreferrer" 
           whileHover={{ scale: 1.05 }}

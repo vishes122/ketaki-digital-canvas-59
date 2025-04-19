@@ -61,10 +61,54 @@
 
 .gradient-background {
   @apply bg-gradient-to-br from-violet-50 via-white to-violet-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950;
+  animation: gradientAnimation 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .glass-card {
-  @apply bg-background/95 backdrop-blur-sm border shadow-sm hover:shadow-md transition-shadow duration-200;
+  @apply bg-background/95 backdrop-blur-sm border shadow-sm hover:shadow-md transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  animation: lightShift 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes lightShift {
+  0% {
+    transform: translate(-30%, -30%) rotate(0deg);
+  }
+  50% {
+    transform: translate(30%, 30%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-30%, -30%) rotate(360deg);
+  }
 }
 
 /* Scrollbar styling */
