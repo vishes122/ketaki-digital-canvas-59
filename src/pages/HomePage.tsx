@@ -17,41 +17,38 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden gradient-background">
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 gradient-background -z-10" />
       <Header />
       
       <motion.main 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="container mx-auto px-4 py-20 space-y-24 relative z-10"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-32 relative z-10"
       >
-        <section id="home" className="min-h-screen flex items-center">
+        <section id="home" className="min-h-[calc(100vh-5rem)] flex items-center">
           <Hero />
         </section>
         
-        <section id="about" className="pt-24">
-          <About />
-        </section>
-        
-        <section id="skills" className="pt-24">
-          <Skills />
-        </section>
-        
-        <section id="projects" className="pt-24">
-          <Projects />
-        </section>
-        
-        <section id="certifications" className="pt-24">
-          <Certifications />
-        </section>
-        
-        <section id="education" className="pt-24">
-          <Education />
-        </section>
-        
-        <section id="contact" className="pt-24">
-          <Contact />
-        </section>
+        {['about', 'skills', 'projects', 'certifications', 'education', 'contact'].map((section) => (
+          <section
+            key={section}
+            id={section}
+            className="pt-16 scroll-mt-24"
+          >
+            {(() => {
+              switch (section) {
+                case 'about': return <About />;
+                case 'skills': return <Skills />;
+                case 'projects': return <Projects />;
+                case 'certifications': return <Certifications />;
+                case 'education': return <Education />;
+                case 'contact': return <Contact />;
+                default: return null;
+              }
+            })()}
+          </section>
+        ))}
       </motion.main>
       
       <Footer />

@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,20 +10,20 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 262 80% 50%;
+    --primary: 263 70% 50%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 262 80% 50%;
+    --accent: 263 70% 50%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -61,19 +60,19 @@
 }
 
 .gradient-background {
-  @apply bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-pink-500/20 dark:from-purple-900/30 dark:via-blue-900/30 dark:to-pink-900/30;
+  @apply bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-100 via-violet-50 to-white dark:from-gray-900 dark:via-purple-900/30 dark:to-black;
 }
 
 .glass-card {
-  @apply backdrop-blur-md bg-white/40 dark:bg-black/40 border border-white/30 dark:border-white/10 shadow-lg;
+  @apply backdrop-blur-md bg-white/40 dark:bg-black/40 border border-white/30 dark:border-white/10 shadow-lg hover:shadow-xl transition-shadow duration-300;
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400;
 }
 
 .animated-gradient-border {
-  --border-width: 3px;
+  --border-width: 2px;
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
@@ -175,10 +174,9 @@
 
 /* Additional gradient utilities */
 .gradient-text-primary {
-  @apply bg-gradient-to-br from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent;
+  @apply bg-gradient-to-br from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent;
 }
 
 .gradient-border {
-  @apply border-transparent bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 bg-clip-border;
+  @apply border-transparent bg-gradient-to-r from-violet-500 to-indigo-500 dark:from-violet-400 dark:to-indigo-400 bg-clip-border;
 }
-
