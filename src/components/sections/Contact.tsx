@@ -1,78 +1,200 @@
 
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Book } from "lucide-react";
+import { Mail, Phone, Linkedin, Book, MapPin, User, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const Contact = () => {
   return (
-    <section className="py-20 px-4 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <motion.h2 
-          initial={{ y: -20 }}
-          whileInView={{ y: 0 }}
-          transition={{ duration: 0.5 }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="container mx-auto"
+    >
+      <motion.h2 
+        initial={{ y: -20 }}
+        whileInView={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="text-4xl font-bold text-center text-gradient mb-16"
+      >
+        Contact Me
+      </motion.h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <motion.div
+          initial={{ x: -30, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-gray-900 mb-12 text-center"
+          className="glass-card p-8 rounded-xl"
         >
-          Contact Me
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h3 className="text-2xl font-semibold mb-6 text-foreground">Get In Touch</h3>
+          
+          <div className="space-y-6">
+            <motion.div 
+              whileHover={{ x: 5 }}
+              className="flex items-center gap-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Phone className="text-primary" size={20} />
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">Phone</h4>
+                <p className="text-muted-foreground">8657495370</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ x: 5 }}
+              className="flex items-center gap-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Mail className="text-primary" size={20} />
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">Email</h4>
+                <p className="text-muted-foreground">ketakikhanvilkar@gmail.com</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ x: 5 }}
+              className="flex items-center gap-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Linkedin className="text-primary" size={20} />
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">LinkedIn</h4>
+                <p className="text-muted-foreground">Ketaki Khanvilkar</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ x: 5 }}
+              className="flex items-center gap-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <MapPin className="text-primary" size={20} />
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground">Location</h4>
+                <p className="text-muted-foreground">Mumbai, India</p>
+              </div>
+            </motion.div>
+          </div>
+          
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="mt-8 space-y-4 bg-primary/5 p-6 rounded-xl"
           >
-            <div className="flex items-center gap-4">
-              <Phone className="text-purple-700" size={24} />
+            <h4 className="text-lg font-medium text-foreground">Personal Information</h4>
+            
+            <div className="flex items-center gap-3">
+              <Calendar className="text-primary flex-shrink-0" size={18} />
               <div>
-                <h3 className="font-semibold text-gray-900">Phone</h3>
-                <p className="text-gray-600">8657495370</p>
+                <span className="text-muted-foreground">Date of Birth:</span>
+                <span className="ml-2">24/08/2003</span>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Mail className="text-purple-700" size={24} />
+            
+            <div className="flex items-center gap-3">
+              <User className="text-primary flex-shrink-0" size={18} />
               <div>
-                <h3 className="font-semibold text-gray-900">Email</h3>
-                <p className="text-gray-600">ketakikhanvilkar@gmail.com</p>
+                <span className="text-muted-foreground">Languages:</span>
+                <span className="ml-2">Marathi, Hindi, English</span>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Linkedin className="text-purple-700" size={24} />
+            
+            <div className="flex items-start gap-3">
+              <Book className="text-primary flex-shrink-0 mt-1" size={18} />
               <div>
-                <h3 className="font-semibold text-gray-900">LinkedIn</h3>
-                <p className="text-gray-600">Ketaki Khanvilkar</p>
+                <span className="text-muted-foreground">Hobbies:</span>
+                <span className="ml-2">Reading books, traveling, visiting art galleries and libraries</span>
               </div>
             </div>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-purple-50 p-6 rounded-lg"
-          >
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Personal Information</h3>
-            <div className="space-y-4 text-gray-600">
-              <p>
-                <span className="font-semibold">Date of Birth:</span> 24/08/2003
-              </p>
-              <p>
-                <span className="font-semibold">Languages Known:</span>
-                <br />
-                Marathi (R/W/S), Hindi (R/W/S), English (R/W/S)
-              </p>
-              <div className="flex items-center gap-2">
-                <Book className="text-purple-700" size={20} />
-                <p>
-                  <span className="font-semibold">Hobbies:</span> Reading books, travelling, visiting art galleries and libraries
-                </p>
+        </motion.div>
+        
+        <motion.div
+          initial={{ x: 30, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="glass-card p-8 rounded-xl"
+        >
+          <h3 className="text-2xl font-semibold mb-6 text-foreground">Send a Message</h3>
+          
+          <form className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
+                  Your Name
+                </label>
+                <Input 
+                  id="name" 
+                  placeholder="John Doe" 
+                  className="bg-background/50 border-primary/20 focus:border-primary"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
+                  Email Address
+                </label>
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="john@example.com" 
+                  className="bg-background/50 border-primary/20 focus:border-primary"
+                />
               </div>
             </div>
-          </motion.div>
-        </div>
+            
+            <div className="space-y-2">
+              <label htmlFor="subject" className="text-sm font-medium text-muted-foreground">
+                Subject
+              </label>
+              <Input 
+                id="subject" 
+                placeholder="How can I help you?" 
+                className="bg-background/50 border-primary/20 focus:border-primary"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
+                Your Message
+              </label>
+              <Textarea 
+                id="message" 
+                placeholder="Write your message here..." 
+                className="min-h-[150px] bg-background/50 border-primary/20 focus:border-primary"
+              />
+            </div>
+            
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Button 
+                type="submit"
+                className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+              >
+                Send Message
+              </Button>
+            </motion.div>
+          </form>
+        </motion.div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 

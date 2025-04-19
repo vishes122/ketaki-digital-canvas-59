@@ -1,26 +1,24 @@
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Skills", path: "/skills" },
-  { name: "Projects", path: "/projects" },
-  { name: "Certifications", path: "/certifications" },
-  { name: "Education", path: "/education" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Certifications", href: "#certifications" },
+  { name: "Education", href: "#education" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -29,10 +27,33 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      
+      // Find active section based on scroll position
+      const sections = navItems.map(item => item.href.substring(1));
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= element.offsetTop - 100) {
+          setActiveSection(section);
+          break;
+        }
+      }
     };
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   if (!mounted) return null;
 
@@ -41,12 +62,11 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-40 py-4 px-6 transition-all duration-300",
+      className={`fixed top-0 left-0 right-0 z-40 py-4 px-6 transition-all duration-500 ${
         isScrolled 
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-md" 
+          ? "glass-card shadow-lg" 
           : "bg-transparent"
-      )}
+      }`}
     >
       <div className="container mx-auto flex items-center justify-between">
         <motion.div 
@@ -55,37 +75,41 @@ export function Header() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl md:text-2xl font-bold"
         >
-          <Link to="/" className="text-primary hover:text-primary/80 transition-colors">
+          <a href="#home" className="text-gradient font-bold">
             Ketaki Khanvilkar
-          </Link>
+          </a>
         </motion.div>
 
         {/* Desktop Navigation */}
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="flex gap-1">
-            {navItems.map((item, index) => (
-              <NavigationMenuItem key={item.name}>
-                <Link to={item.path}>
-                  <NavigationMenuLink 
-                    className={cn(
-                      "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors",
-                      "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none",
-                      "data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                    )}
-                  >
-                    <motion.span
-                      initial={{ y: -20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
-                    >
-                      {item.name}
-                    </motion.span>
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <nav className="hidden md:flex items-center space-x-1">
+          {navItems.map((item, index) => (
+            <motion.a
+              key={item.name}
+              href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(item.href);
+              }}
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
+              className={`relative px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                activeSection === item.href.substring(1)
+                  ? "text-primary" 
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {activeSection === item.href.substring(1) && (
+                <motion.span
+                  layoutId="activeSection"
+                  className="absolute inset-0 rounded-md bg-primary/10 -z-10"
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+              {item.name}
+            </motion.a>
+          ))}
+        </nav>
 
         {/* Mobile Menu Button */}
         <Button
@@ -94,32 +118,45 @@ export function Header() {
           className="md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <Menu />
+          {isMobileMenuOpen ? <X /> : <Menu />}
         </Button>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 right-0 bg-background border-b border-border p-4 md:hidden"
-          >
-            <nav className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="px-4 py-2 rounded-md hover:bg-accent text-foreground hover:text-accent-foreground transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-full left-0 right-0 glass-card p-4 md:hidden"
+            >
+              <nav className="flex flex-col space-y-2">
+                {navItems.map((item) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -20, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={`px-4 py-3 rounded-md ${
+                      activeSection === item.href.substring(1)
+                        ? "bg-primary/20 text-primary" 
+                        : "text-foreground hover:bg-primary/10"
+                    } transition-colors`}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );
