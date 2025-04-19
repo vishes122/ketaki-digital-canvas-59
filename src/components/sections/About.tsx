@@ -49,8 +49,8 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="glass-card p-5 rounded-xl"
+              whileHover={{ scale: 1.03, rotateZ: 1 }}
+              className="glass-card p-5 rounded-xl hover:border-primary/20"
             >
               <div className="flex items-center gap-3 mb-3">
                 <FileText className="text-primary" size={20} />
@@ -60,8 +60,8 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="glass-card p-5 rounded-xl"
+              whileHover={{ scale: 1.03, rotateZ: -1 }}
+              className="glass-card p-5 rounded-xl hover:border-primary/20"
             >
               <div className="flex items-center gap-3 mb-3">
                 <Briefcase className="text-primary" size={20} />
@@ -71,8 +71,8 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="glass-card p-5 rounded-xl"
+              whileHover={{ scale: 1.03, rotateZ: 1 }}
+              className="glass-card p-5 rounded-xl hover:border-primary/20"
             >
               <div className="flex items-center gap-3 mb-3">
                 <Globe className="text-primary" size={20} />
@@ -82,8 +82,8 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="glass-card p-5 rounded-xl"
+              whileHover={{ scale: 1.03, rotateZ: -1 }}
+              className="glass-card p-5 rounded-xl hover:border-primary/20"
             >
               <div className="flex items-center gap-3 mb-3">
                 <UserCircle className="text-primary" size={20} />
@@ -101,13 +101,26 @@ const About = () => {
           viewport={{ once: true }}
           className="lg:order-2 order-1 flex justify-center"
         >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full animated-gradient-border">
-            <div className="absolute inset-[3px] rounded-full overflow-hidden glass-card backdrop-blur-lg">
-              <div className="w-full h-full bg-gradient-to-br from-purple-500/50 to-pink-500/50 flex items-center justify-center">
-                <div className="text-white text-7xl font-bold">KK</div>
-              </div>
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="relative w-full max-w-md p-8 glass-card rounded-2xl overflow-hidden"
+          >
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-gradient">Professional Summary</h3>
+              <p className="text-muted-foreground">
+                Passionate about deriving actionable insights from complex datasets 
+                and leveraging big data technologies to solve real-world problems. 
+                My expertise includes statistical analysis, data preprocessing, and 
+                machine learning algorithms implementation.
+              </p>
+              <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+              <p className="text-muted-foreground">
+                Currently pursuing Master's in Big Data Analytics at Jai Hind College,
+                focusing on developing strong foundations in data analysis, Machine Learning,
+                and statistical concepts along with data visualization techniques.
+              </p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </motion.div>
