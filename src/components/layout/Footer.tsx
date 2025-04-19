@@ -1,5 +1,5 @@
 
-import { GitHub, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Footer() {
@@ -37,7 +37,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              <GitHub size={20} />
+              <Github size={20} />
               <span className="sr-only">GitHub</span>
             </a>
             <a 
